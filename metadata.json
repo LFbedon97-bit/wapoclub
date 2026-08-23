@@ -1,0 +1,6 @@
+{
+  "name": "Wapo Barber Club VIP",
+  "description": "Sistema de fidelización digital con códigos QR y Ruleta de Beneficios.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

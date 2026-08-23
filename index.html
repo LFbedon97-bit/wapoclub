@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Wapo Barber Club - Tarjeta de Fidelización</title>
+    <link rel="icon" type="image/png" href="/wapo-logo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/wapo-logo.png" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>
+      /* Bloqueo total de la marca de agua e inyecciones de Netlify */
+      [data-netlify-deploy-preview],
+      .netlify-drawer,
+      #netlify-drawer,
+      iframe[src*="netlify"],
+      div[class*="netlify"],
+      div[id*="netlify"],
+      div[class*="feedback"],
+      [data-feedback-button],
+      #netlify-feedback-drawer,
+      a[href*="netlify.com"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        position: fixed !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        z-index: -9999 !important;
+      }
+    </style>
+    <script>
+      (function() {
+        function killNetlify() {
+          var badNodes = document.querySelectorAll('[data-netlify-deploy-preview], .netlify-drawer, #netlify-drawer, iframe[src*="netlify"], div[class*="netlify"], div[id*="netlify"], [data-feedback-button], a[href*="netlify.com"]');
+          for (var i = 0; i < badNodes.length; i++) {
+            try { badNodes[i].remove(); } catch(e) {}
+          }
+        }
+        try {
+          var obs = new MutationObserver(killNetlify);
+          obs.observe(document.documentElement, { childList: true, subtree: true });
+        } catch(e) {}
+        window.addEventListener('DOMContentLoaded', killNetlify);
+        window.addEventListener('load', killNetlify);
+        setInterval(killNetlify, 300);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log('Service Worker registrado con éxito.'))
+            .catch((err) => console.error('Error al registrar el Service Worker:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
+
