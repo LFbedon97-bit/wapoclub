@@ -59,7 +59,14 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log('Service Worker registrado con éxito.'))
+            .then((reg) => {
+              console.log('Service Worker registrado con éxito.');
+              window.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                  reg.update().catch(() => {});
+                }
+              });
+            })
             .catch((err) => console.error('Error al registrar el Service Worker:', err));
         });
       }
